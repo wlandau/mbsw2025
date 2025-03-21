@@ -1,6 +1,7 @@
 ---
 format:
    revealjs:
+     incremental: true
      slide-number: true
      footer: "&copy; 2025 Eli Lilly and Company"
      view-distance: 100
@@ -18,7 +19,8 @@ knitr::opts_chunk$set(
   cache = FALSE,
   comment = "#>",
   fig.width = 10, 
-  fig.height = 5
+  fig.height = 5,
+  echo = TRUE
 )
 ```
 
@@ -68,7 +70,6 @@ knitr::opts_chunk$set(
 
 * Quantify decision-making ability.
 * Compare alternative designs.
-
 
 ## Clinical trial simulation: steps
 
@@ -164,10 +165,8 @@ $$
 ## Functions
 
 $$
-\begin{aligned}
 \Huge
-\boxed{\displaystyle \color{blue}{y} = \color{purple}{f}(\color{teal}{x})}
-\end{aligned}
+{\color{blue}{y}} = {\color{purple}{f}}({\color{teal}{x}})
 $$
 
 > * Everything that exists in an object.
@@ -176,211 +175,71 @@ $$
 > John Chambers
 
 
+## Top-level R functions
 
+$$
+\Huge
+{\color{blue}{y}} = {\color{purple}{f}}({\color{teal}{x}})
+$$
 
+Function | Description
+---|---
+`draw_hazard_ratios()` | From historical model.
+`trial()` | Simulate one trial rep.
+`plot_results()` | Visualize results.
 
-
-
-## Simulation code: R functions
-
-<center>
-<img src="./images/functions.png" height="275px">
-</center>
-
-::: {style="font-size: 60%;"}
-
-* A data analysis is a sequence of transformations.
-* Functions are great tools to express those transformations.
-* `simulate_dataset()` accepts a simulation scenario (with sample size and assumed efficacy level) and returns a simulated dataset.
-* `analyze_dataset()` accepts a simulated dataset and returns a one-row data frame with a p-value (and optionally posterior probabilities, etc.).
-* `simulate_trial()` chains `simulate_dataset()` and `analyze_dataset()` together.
-
-:::
-
-## `simulate_dataset()`
-
-:::: {.columns style="font-size: 60%;"}
-
-::: {.column width="55%"}
-
-```{r, eval = FALSE, echo = TRUE}
-simulate_dataset <- function(
-  mean_response_drug,
-  sample_size
-) {
-  patient_id <- paste0(
-    "patient_",
-    sample.int(n = 1e9, size = sample_size, replace = FALSE)
-  )
-  study_arm <- rep(
-    x = c("drug", "placebo"),
-    each = sample_size / 2
-  )
-  response_drug <- rnorm(
-    n = sample_size / 2,
-    mean = mean_response_drug,
-    sd = 4.25
-  )
-  response_placebo <- rnorm(
-    n = sample_size / 2,
-    mean = 1,
-    sd = 4.25
-  )
-  tibble(
-    patient_id = patient_id,
-    study_arm = study_arm,
-    response = c(response_drug, response_placebo)
-  )
-}
-```
-
-:::
-
-::: {.column width="45%"}
-
-```{r, eval = FALSE, echo = TRUE}
-library(tibble)
-dataset <- simulate_dataset(
-  mean_response_drug = 2,
-  sample_size = 800
-)
-dataset
-#> # A tibble: 800 × 3
-#>    patient_id        study_arm response
-#>    <chr>             <chr>        <dbl>
-#>  1 patient_545860557 drug         0.950
-#>  2 patient_68238256  drug         0.524
-#>  3 patient_197379753 drug         7.05 
-#>  4 patient_577319868 drug        -1.46 
-#>  5 patient_291086621 drug         8.60 
-#>  6 patient_851227638 drug        -0.202
-#>  7 patient_96276021  drug        13.2  
-#>  8 patient_2032492   drug        -5.26 
-#>  9 patient_439198057 drug        -2.48 
-#> 10 patient_947918099 drug         6.99 
-#> # ℹ 790 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
-```
-
-:::
-
-::::
-
-## `analyze_dataset()`
-
-:::: {.columns style="font-size: 82%;"}
-
-::: {.column width="63%"}
-
-```{r, eval = FALSE, echo = TRUE}
-analyze_dataset <- function(dataset) {
-  dataset %>%
-    mutate(
-      study_arm = factor(
-        study_arm,
-        levels = c("placebo", "drug")
-      )
-    ) %>%
-    lm(formula = response ~ study_arm) %>%
-    summary() %>%
-    coefficients() %>%
-    as.data.frame() %>%
-    filter(grepl("^study_arm", rownames(.))) %>%
-    mutate(
-      p_value = pnorm(
-        q = `t value`,
-        lower.tail = FALSE
-      )
-    ) %>%
-    pull(p_value) %>%
-    tibble(p_value = .)
-}
-```
-
-:::
-
-::: {.column width="37%"}
-
-```{r, echo = TRUE, eval = FALSE}
-library(dplyr)
-analyze_dataset(dataset)
-#> # A tibble: 1 × 1
-#>   p_value
-#>     <dbl>
-#> 1  0.0169
-```
-
-:::
-
-::::
-
-## `simulate_trial()`
-
-:::: {.columns style="font-size: 79%;"}
-
-::: {.column width="61%"}
-
-```{r, eval = FALSE, echo = TRUE}
-simulate_trial <- function(
-  mean_response_drug,
-  sample_size
-) {
-  dataset <- simulate_dataset(
-    mean_response_drug = mean_response_drug,
-    sample_size = sample_size
-  )
-  analyze_dataset(dataset)
-}
-```
-
-:::
-
-::: {.column width="39%"}
-
-```{r, echo = TRUE, eval = FALSE}
-simulate_trial(
-  mean_response_drug = 2,
-  sample_size = 800
-)
-#> # A tibble: 1 × 1
-#>   p_value
-#>     <dbl>
-#> 1  0.0208
-```
-
-:::
-
-::::
-
-## Scenarios {.smaller}
+## Example simulation replication
 
 <center>
-<img src="./images/scenarios.png" height="225px">
+<img src="./images/r.png" height="200px">
 </center>
 
-:::: {.columns}
+```{r, eval = FALSE}
+trial(hazard_ratio = 1.2, events = 50) # 33 seconds
+#> # A tibble: 1 × 5
+#>   probability_efficacy mean_hazard_ratio events enrolled
+#>                  <dbl>             <dbl>  <dbl>    <dbl>
+#> 1              0.00762              1.69     50       69
+```
 
-::: {.column}
+## Example simulation replication
 
-### Procedure
+<center>
+<img src="./images/r.png" height="200px">
+</center>
 
-* Use `simulate_trial()` to simulate thousands of replications of each scenario (row above).
-* Within each scenario, calculate the proportion of replications declared efficacy (p-value < 0.05).
+```{r, eval = FALSE}
+trial(hazard_ratio = 0.5, events = 50) # 50 seconds
+#> # A tibble: 1 × 5
+#>   probability_efficacy mean_hazard_ratio events enrolled
+#>                  <dbl>             <dbl>  <dbl>    <dbl>
+#> 1                0.924             0.507     50       89
+```
 
-:::
+## Scripted simulation
 
-::: {.column}
+* Step 1: draw historical hazard ratios.
 
-### Goals
+```{r, eval = FALSE}
+hazard_ratio <- draw_hazard_ratios(n_draws = 1000)
+```
 
-1. Determine the lowest sample size with power $\ge$ 90% and type 1 error < 5%.
-2. Manage the computational demands of large simulations.
 
-:::
+* Step 2: run simulations.
 
-::::
+```{r, eval = FALSE}
+results <- expand_grid(hazard_ratio, events = c(40, 50, 60)) |>
+  pmap(trial) |>
+  list_rbind()
+```
 
-## A reproducible analysis pipeline tool
+* Step 3: plot results.
+
+```{r, eval = FALSE}
+plot_results(results)
+```
+
+# A reproducible analysis pipeline tool
 
 <center>
 <img src="./images/targets.png" height="500px">
