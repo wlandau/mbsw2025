@@ -419,25 +419,31 @@ h_i(t) = h_0(t, \lambda) \exp \left (\eta_i(t) \alpha + \gamma + w_i \color{blue
 </section>
 <section id="scripted-simulation" class="slide level2">
 <h2>Scripted simulation</h2>
+<div>
 <ul>
-<li class="fragment">Step 1: draw historical hazard ratios.</li>
+<li>Step 1: draw historical hazard ratios.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>hazard_ratio <span class="ot">&lt;-</span> <span class="fu">draw_hazard_ratios</span>(<span class="at">n_draws =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="fragment">
 <ul>
-<li class="fragment">Step 2: run simulations.</li>
+<li>Step 2: run simulations.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>results <span class="ot">&lt;-</span> <span class="fu">expand_grid</span>(hazard_ratio, <span class="at">events =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href=""></a>  <span class="fu">pmap</span>(trial) <span class="sc">|&gt;</span></span>
 <span id="cb4-3"><a href=""></a>  <span class="fu">list_rbind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
+<div class="fragment">
 <ul>
-<li class="fragment">Step 3: plot results.</li>
+<li>Step 3: plot results.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">plot_results</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </div>
 </section></section>
 <section>

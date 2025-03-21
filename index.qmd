@@ -216,7 +216,9 @@ trial(hazard_ratio = 0.5, events = 50) # 50 seconds
 #> 1                0.924             0.507     50       89
 ```
 
-## Scripted simulation
+## Scripted simulation 
+
+:::{.nonincremental}
 
 * Step 1: draw historical hazard ratios.
 
@@ -224,6 +226,7 @@ trial(hazard_ratio = 0.5, events = 50) # 50 seconds
 hazard_ratio <- draw_hazard_ratios(n_draws = 1000)
 ```
 
+:::{.fragment}
 
 * Step 2: run simulations.
 
@@ -233,11 +236,21 @@ results <- expand_grid(hazard_ratio, events = c(40, 50, 60)) |>
   list_rbind()
 ```
 
+:::
+
+:::{.fragment}
+
+
 * Step 3: plot results.
 
 ```{r, eval = FALSE}
 plot_results(results)
 ```
+
+:::
+
+:::
+
 
 # A reproducible analysis pipeline tool
 
