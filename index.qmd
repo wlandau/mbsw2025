@@ -46,39 +46,140 @@ knitr::opts_chunk$set(
 </center>
 
 
-# Clinical trial simulations
+# Clinical research
 
-## 
+## Drug development
 
-<center>
-<img src="./images/pharma.png" height="625px">
-</center>
+![](./images/process.png)
 
-## Trial design: optimization and balance
+## Clinical trials
 
-<center>
-<img src="./images/design.png" height="500px">
-</center>
+![](./images/clinical.png)
 
-## Clinical trial simulation {.smaller}
+## Responsibilities
 
-<center>
-<img src="./images/simulation.png" height="550px">
-</center>
+![](./images/responsibility.png)
 
-# Example clinical trial simulation
-
-## Example trial {.smaller}
+## Clinical trial simulation: goals
 
 <center>
-<img src="./images/trial.png" height="300px">
+<img src="./images/goals.jpg" height="300px">
 </center>
 
-* Randomized, controlled, parallel, non-adaptive phase 3 study.
-* Randomize half the patients to drug, half to placebo.
-* The main outcome (primary endpoint) is continuous, and a higher score is healthier.
-* Declare efficacy if the p-value is < 0.05 from a 1-sided hypothesis test.
-* <span style="color: blue">**Goal of the simulation: determine minimum number of patients required to demonstrate superiority to placebo with 90% power and Type I error less than 5%.**</span>
+* Quantify decision-making ability.
+* Compare alternative designs.
+
+
+## Clinical trial simulation: steps
+
+<center>
+<img src="./images/steps.jpg" height="300px">
+</center>
+
+1. Simulate virtual patients.
+1. Analyze with models.
+1. Repeat thousands of times.
+
+## Clinical trial simulation: challenges
+
+<center>
+<img src="./images/challenges.jpg" height="300px">
+</center>
+
+* Complicated R code.
+* Long execution times.
+* Frequent changes.
+
+# Illustrative simulation
+
+## Hypothetical trial
+
+<center>
+<img src="./images/stethoscope.jpg" height="300px">
+</center>
+
+* Extremely rare autoimmune liver disease.
+* Phase 2 proof-of-concept study.
+* Novel therapy vs active control.
+* Randomize up to 100 patients (1:1).
+
+## Bayesian joint model
+
+#### Survival endpoint: years without hospitalization.
+
+$$
+\begin{aligned}
+E(y_i(t)) &= \eta_i(t) \\
+&= x_i(t) \beta + b_i
+\end{aligned}
+$$
+
+#### Longitudinal endpoint: log bilirubin.
+
+$$
+\begin{aligned}
+h_i(t) = h_0(t, \lambda) \exp \left (\eta_i(t) \alpha + \gamma + w_i \color{blue}{\boldsymbol{\theta}} \right )
+\end{aligned}
+$$
+
+* $w_i$: 1 for treatment, 0 for control.
+* $\color{blue}{\boldsymbol{\theta}}$: log hazard ratio of treatment vs control.
+
+## Clinical trial design
+
+<center>
+<img src="./images/stethoscope.pdf" height="300px">
+</center>
+
+* 10-year accrual period.
+* Futility interim at $n$ hospitalizations.
+* **Goal: simulate to propose a suitable $n$**.
+
+## Simulate futility
+
+![](./images/bayes.png)
+
+* Simulate 1000 futile trials for $n = 40, 50, 60$.
+* Assuming a fixed hazard ratio of 1 is unrealistic.
+* Instead, draw from a distribution that captures futility.
+* Use the posterior distribution from a historical trial.
+
+## Historical futility data
+
+<center>
+<img src="./images/data.jpg" height="300px">
+</center>
+
+* Datasets `pbc` and `pbcseq` from the `survival` package.
+* Indication: primary biliary cholangitis (PBC).
+* Mayo Clinic trial of D-penicillamine vs placebo.
+* D-penicillamine did not improve survival.
+
+## Estimated hazard ratio
+
+![](./images/hazard_ratio.png)
+
+# R code
+
+## Functions
+
+$$
+\begin{aligned}
+\Huge
+\boxed{\displaystyle \color{blue}{y} = \color{purple}{f}(\color{teal}{x})}
+\end{aligned}
+$$
+
+> * Everything that exists in an object.
+> * Everything that happens is a function call.
+> 
+> John Chambers
+
+
+
+
+
+
 
 ## Simulation code: R functions
 

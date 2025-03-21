@@ -219,45 +219,150 @@ Will Landau
 </center>
 </section>
 <section>
-<section id="clinical-trial-simulations" class="title-slide slide level1 center">
-<h1>Clinical trial simulations</h1>
+<section id="clinical-research" class="title-slide slide level1 center">
+<h1>Clinical research</h1>
 
 </section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<center>
-<img src="./images/pharma.png" height="625px">
-</center>
-</section>
-<section id="trial-design-optimization-and-balance" class="slide level2">
-<h2>Trial design: optimization and balance</h2>
-<center>
-<img src="./images/design.png" height="500px">
-</center>
-</section>
-<section id="clinical-trial-simulation" class="slide level2 smaller">
-<h2>Clinical trial simulation</h2>
-<center>
-<img src="./images/simulation.png" height="550px">
-</center>
-</section></section>
-<section>
-<section id="example-clinical-trial-simulation" class="title-slide slide level1 center">
-<h1>Example clinical trial simulation</h1>
+<section id="drug-development" class="slide level2">
+<h2>Drug development</h2>
 
-</section>
-<section id="example-trial" class="slide level2 smaller">
-<h2>Example trial</h2>
+<img data-src="./images/process.png" class="r-stretch"></section>
+<section id="clinical-trials" class="slide level2">
+<h2>Clinical trials</h2>
+
+<img data-src="./images/clinical.png" class="r-stretch"></section>
+<section id="responsibilities" class="slide level2">
+<h2>Responsibilities</h2>
+
+<img data-src="./images/responsibility.png" class="r-stretch"></section>
+<section id="clinical-trial-simulation-goals" class="slide level2">
+<h2>Clinical trial simulation: goals</h2>
 <center>
-<img src="./images/trial.png" height="300px">
+<img src="./images/goals.jpg" height="300px">
 </center>
 <ul>
-<li>Randomized, controlled, parallel, non-adaptive phase 3 study.</li>
-<li>Randomize half the patients to drug, half to placebo.</li>
-<li>The main outcome (primary endpoint) is continuous, and a higher score is healthier.</li>
-<li>Declare efficacy if the p-value is &lt; 0.05 from a 1-sided hypothesis test.</li>
-<li><span style="color: blue"><strong>Goal of the simulation: determine minimum number of patients required to demonstrate superiority to placebo with 90% power and Type I error less than 5%.</strong></span></li>
+<li>Quantify decision-making ability.</li>
+<li>Compare alternative designs.</li>
 </ul>
+</section>
+<section id="clinical-trial-simulation-steps" class="slide level2">
+<h2>Clinical trial simulation: steps</h2>
+<center>
+<img src="./images/steps.jpg" height="300px">
+</center>
+<ol type="1">
+<li>Simulate virtual patients.</li>
+<li>Analyze with models.</li>
+<li>Repeat thousands of times.</li>
+</ol>
+</section>
+<section id="clinical-trial-simulation-challenges" class="slide level2">
+<h2>Clinical trial simulation: challenges</h2>
+<center>
+<img src="./images/challenges.jpg" height="300px">
+</center>
+<ul>
+<li>Complicated R code.</li>
+<li>Long execution times.</li>
+<li>Frequent changes.</li>
+</ul>
+</section></section>
+<section>
+<section id="illustrative-simulation" class="title-slide slide level1 center">
+<h1>Illustrative simulation</h1>
+
+</section>
+<section id="hypothetical-trial" class="slide level2">
+<h2>Hypothetical trial</h2>
+<center>
+<img src="./images/stethoscope.jpg" height="300px">
+</center>
+<ul>
+<li>Extremely rare autoimmune liver disease.</li>
+<li>Phase 2 proof-of-concept study.</li>
+<li>Novel therapy vs active control.</li>
+<li>Randomize up to 100 patients (1:1).</li>
+</ul>
+</section>
+<section id="bayesian-joint-model" class="slide level2">
+<h2>Bayesian joint model</h2>
+<h4 id="survival-endpoint-years-without-hospitalization.">Survival endpoint: years without hospitalization.</h4>
+<p><span class="math display">\[
+\begin{aligned}
+E(y_i(t)) &amp;= \eta_i(t) \\
+&amp;= x_i(t) \beta + b_i
+\end{aligned}
+\]</span></p>
+<h4 id="longitudinal-endpoint-log-bilirubin.">Longitudinal endpoint: log bilirubin.</h4>
+<p><span class="math display">\[
+\begin{aligned}
+h_i(t) = h_0(t, \lambda) \exp \left (\eta_i(t) \alpha + \gamma + w_i \color{blue}{\boldsymbol{\theta}} \right )
+\end{aligned}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(w_i\)</span>: 1 for treatment, 0 for control.</li>
+<li><span class="math inline">\(\color{blue}{\boldsymbol{\theta}}\)</span>: log hazard ratio of treatment vs control.</li>
+</ul>
+</section>
+<section id="clinical-trial-design" class="slide level2">
+<h2>Clinical trial design</h2>
+<center>
+<img src="./images/stethoscope.pdf" height="300px">
+</center>
+<ul>
+<li>10-year accrual period.</li>
+<li>Futility interim at <span class="math inline">\(n\)</span> hospitalizations.</li>
+<li><strong>Goal: simulate to propose a suitable <span class="math inline">\(n\)</span></strong>.</li>
+</ul>
+</section>
+<section id="simulate-futility" class="slide level2">
+<h2>Simulate futility</h2>
+
+<img data-src="./images/bayes.png" class="r-stretch"><ul>
+<li>Simulate 1000 futile trials for <span class="math inline">\(n = 40, 50, 60\)</span>.</li>
+<li>Assuming a fixed hazard ratio of 1 is unrealistic.</li>
+<li>Instead, draw from a distribution that captures futility.</li>
+<li>Use the posterior distribution from a historical trial.</li>
+</ul>
+</section>
+<section id="historical-futility-data" class="slide level2">
+<h2>Historical futility data</h2>
+<center>
+<img src="./images/data.jpg" height="300px">
+</center>
+<ul>
+<li>Datasets <code>pbc</code> and <code>pbcseq</code> from the <code>survival</code> package.</li>
+<li>Indication: primary biliary cholangitis (PBC).</li>
+<li>Mayo Clinic trial of D-penicillamine vs placebo.</li>
+<li>D-penicillamine did not improve survival.</li>
+</ul>
+</section>
+<section id="estimated-hazard-ratio" class="slide level2">
+<h2>Estimated hazard ratio</h2>
+
+<img data-src="./images/hazard_ratio.png" class="r-stretch"></section></section>
+<section>
+<section id="r-code" class="title-slide slide level1 center">
+<h1>R code</h1>
+
+</section>
+<section id="functions" class="slide level2">
+<h2>Functions</h2>
+<p><span class="math display">\[
+\begin{aligned}
+\Huge
+\boxed{\displaystyle \color{blue}{y} = \color{purple}{f}(\color{teal}{x})}
+\end{aligned}
+\]</span></p>
+<blockquote>
+
+<ul>
+<li>Everything that exists in an object.</li>
+<li>Everything that happens is a function call.</li>
+</ul>
+<p>John Chambers</p>
+
+</blockquote>
 </section>
 <section id="simulation-code-r-functions" class="slide level2">
 <h2>Simulation code: R functions</h2>
@@ -1058,7 +1163,7 @@ Will Landau
 <li>A sample size of 800 achieves 90% power while controlling type 1 error at 5%.</li>
 </ul>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-1" class="slide level2">
 <h2></h2>
 <div style="font-size: 75%">
 <div class="columns">
