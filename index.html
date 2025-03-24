@@ -211,7 +211,7 @@
 <center>
 <br>
 <h3>
-Accelerating clinical trial simulation in R with {targets}
+Accelerating clinical trial simulation in R
 </h3>
 <img src="./images/targets.png" height="400px"> <br>
 <h4>
@@ -513,7 +513,7 @@ h(y) &lt; 0.4
 </section></section>
 <section>
 <section id="targets" class="title-slide slide level1 center">
-<h1>{targets}</h1>
+<h1>targets</h1>
 
 </section>
 <section id="make-like-pipeline-tools" class="slide level2">
@@ -536,12 +536,6 @@ h(y) &lt; 0.4
 <li class="fragment">Integrates with Quarto.</li>
 <li class="fragment">Runs distributed computing.</li>
 </ul>
-</section>
-<section id="httpsdocs.ropensci.orgtargets" class="slide level2">
-<h2><a href="https://docs.ropensci.org/targets" class="uri">https://docs.ropensci.org/targets</a></h2>
-<center>
-<a href="https://docs.ropensci.org/targets/"><img src="./images/qr-docs.png" height="550px"></a>
-</center>
 </section></section>
 <section>
 <section id="our-simulation-pipeline" class="title-slide slide level1 center">
@@ -672,11 +666,9 @@ h(y) &lt; 0.4
 </section>
 <section id="run-the-pipeline" class="slide level2">
 <h2>Run the pipeline</h2>
-<p><br></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">tar_make</span>(<span class="at">as_job =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
 <center>
 <img src="./images/workbench.png">
 </center>
@@ -834,24 +826,37 @@ h(y) &lt; 0.4
 </center>
 </div></div>
 </section>
-<section id="thanks" class="slide level2">
-<h2>Thanks</h2>
-</section>
-<section id="section-1" class="slide level2">
+<section id="section-1" class="slide level2 nonincremental">
 <h2></h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:33%;">
 <center>
-<span style="font-size: 1.5em; font-weight: bold;">Documentation</span> <a href="https://docs.ropensci.org/targets/"><img src="./images/qr-docs.png"></a> <span style="font-size: 0.75em;"><a href="https://docs.ropensci.org/targets" class="uri">https://docs.ropensci.org/targets</a></span>
+<span style="font-size: 1.5em; font-weight: bold;">targets</span> <a href="https://docs.ropensci.org/targets/"><img src="./images/qr-docs.png"></a>
 </center>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:33%;">
 <center>
-<span style="font-size: 1.5em; font-weight: bold;">Slides</span> <a href="https://wlandau.github.io/useR2025"><img src="./images/qr-slides.png"></a> <span style="font-size: 0.75em;"><a href="https://wlandau.github.io/useR2025" class="uri">https://wlandau.github.io/useR2025</a></span>
+<span style="font-size: 1.5em; font-weight: bold;">slides</span> <a href="https://wlandau.github.io/useR2025"><img src="./images/qr-slides.png"></a>
+</center>
+</div><div class="column" style="width:33%;">
+<center>
+<span style="font-size: 1.5em; font-weight: bold;">pipeline</span> <a href="https://github.com/wlandau/targets-example-liver"><img src="./images/qr-pipeline.png"></a>
 </center>
 </div></div>
+<p><br></p>
+<p>Special thanks to rOpenSci!</p>
 </section>
-<section id="references" class="slide level2">
-<h2>References</h2>
+<section id="sources" class="slide level2 tiny">
+<h2>Sources</h2>
+<div>
+<ul>
+<li>Brilleman, S. L., M. J. Crowther, M. Moreno-Betancur, J. Buros Novik, and R. Wolfe. 2018. “Joint Longitudinal and Time-to-Event Models via Stan.” In StanCon 2018. https://github.com/stan-dev/stancon_talks/.</li>
+<li>Dickson, E. R., T. R. Fleming, R. H. Wiesner, W. P. Baldus, C. R. Fleming, J. Ludwig, and J. T. McCall. 1985. “Trial of Penicillamine in Advanced Primary Biliary Cirrhosis.” New England Journal of Medicine 312 (16): 1011–15. https://doi.org/10.1056/NEJM198504183121602.</li>
+<li>Goodrich, B., J. Gabry, I. Ali, and S. L. Brilleman. 2024. “rstanarm: Bayesian applied regression modeling via Stan.” https://mc-stan.org/rstanarm.</li>
+<li>Landau, W. M. 2021. “The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing.” Journal of Open Source Software 6 (57): 2959. https://doi.org/10.21105/joss.02959.</li>
+<li>Lawrence, G. A., M. E. Boye, M. J. Crowther, J. G. Ibrahim, G. Quartey, S. Micallef, and F. Y. Bois. 2016. “Joint modeling of survival and longitudinal non-survival data: current methods and issues. Report of the DIA Bayesian joint modeling working group.” Statistics in Medicine 34 (14): 2181–95. https://doi.org/10.1002/sim.6141.</li>
+<li>Therneau, T. M., and P. M. Grambsch. 2000. Modeling Survival Data: Extending the Cox Model. New York: Springer.</li>
+</ul>
+</div>
 
 </section></section>
     </div>

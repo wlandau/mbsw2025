@@ -43,7 +43,7 @@ knitr::opts_chunk$set(
 
 <center>
 <br>
-<h3>Accelerating clinical trial simulation in R with {targets}</h3>
+<h3>Accelerating clinical trial simulation in R</h3>
 <img src="./images/targets.png" height="400px">
 <br>
 <h4>Will Landau</h4>
@@ -333,7 +333,7 @@ plot_results(results)
 <img src="./images/notebook-rerun.png">
 </center>
 
-# {targets}
+# targets
 
 ## Make-like pipeline tools
 
@@ -355,12 +355,6 @@ plot_results(results)
 * Detects dependencies automatically.
 * Integrates with Quarto.
 * Runs distributed computing.
-
-## <https://docs.ropensci.org/targets>
-
-<center>
-<a href="https://docs.ropensci.org/targets/"><img src="./images/qr-docs.png" height = "550px"></a>
-</center>
 
 # Our simulation pipeline
 
@@ -493,13 +487,9 @@ tar_visnetwork()
 
 ## Run the pipeline
 
-<br>
-
 ```{r}
 tar_make(as_job = TRUE)
 ```
-
-<br>
 
 <center>
 <img src="./images/workbench.png">
@@ -674,35 +664,51 @@ tar_visnetwork(targets_only = TRUE)
 
 ::::
 
-## Thanks
-
-##
+## {.nonincremental}
 
 ::::{.columns}
 
-:::{.column width="50%"}
+:::{.column width="33%"}
 
 <center>
-<span style= "font-size: 1.5em; font-weight: bold;">Documentation</span>
+<span style= "font-size: 1.5em; font-weight: bold;">targets</span>
 <a href="https://docs.ropensci.org/targets/"><img src="./images/qr-docs.png"></a>
-<span style= "font-size: 0.75em;"><https://docs.ropensci.org/targets></span>
 </center>
 
 :::
 
-:::{.column width="50%"}
+:::{.column width="33%"}
 
 <center>
-<span style= "font-size: 1.5em; font-weight: bold;">Slides</span>
+<span style= "font-size: 1.5em; font-weight: bold;">slides</span>
 <a href="https://wlandau.github.io/useR2025"><img src="./images/qr-slides.png"></a>
-<span style= "font-size: 0.75em;"><https://wlandau.github.io/useR2025></span>
+</center>
+
+:::
+
+:::{.column width="33%"}
+
+<center>
+<span style= "font-size: 1.5em; font-weight: bold;">pipeline</span>
+<a href="https://github.com/wlandau/targets-example-liver"><img src="./images/qr-pipeline.png"></a>
 </center>
 
 :::
 
 ::::
 
-## References
+<br>
 
+Special thanks to rOpenSci!
 
+## Sources {.tiny}
 
+:::{.nonincremental}
+
+* Brilleman, S. L., M. J. Crowther, M. Moreno-Betancur, J. Buros Novik, and R. Wolfe. 2018. "Joint Longitudinal and Time-to-Event Models via Stan." In StanCon 2018. https://github.com/stan-dev/stancon_talks/.
+* Dickson, E. R., T. R. Fleming, R. H. Wiesner, W. P. Baldus, C. R. Fleming, J. Ludwig, and J. T. McCall. 1985. "Trial of Penicillamine in Advanced Primary Biliary Cirrhosis." New England Journal of Medicine 312 (16): 1011–15. https://doi.org/10.1056/NEJM198504183121602.
+* Goodrich, B., J. Gabry, I. Ali, and S. L. Brilleman. 2024. "rstanarm: Bayesian applied regression modeling via Stan." https://mc-stan.org/rstanarm.
+* Landau, W. M. 2021. "The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing." Journal of Open Source Software 6 (57): 2959. https://doi.org/10.21105/joss.02959.
+* Lawrence, G. A., M. E. Boye, M. J. Crowther, J. G. Ibrahim, G. Quartey, S. Micallef, and F. Y. Bois. 2016. "Joint modeling of survival and longitudinal non-survival data: current methods and issues. Report of the DIA Bayesian joint modeling working group." Statistics in Medicine 34 (14): 2181–95. https://doi.org/10.1002/sim.6141.
+* Therneau, T. M., and P. M. Grambsch. 2000. Modeling Survival Data: Extending the Cox Model. New York: Springer.
+:::
