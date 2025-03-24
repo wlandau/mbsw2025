@@ -50,7 +50,7 @@ knitr::opts_chunk$set(
 </center>
 
 
-# Clinical research
+# Clinical trial simulation
 
 ## Drug development
 
@@ -721,4 +721,20 @@ Special thanks to rOpenSci!
 * Landau, W. M. 2021. "The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing." Journal of Open Source Software 6 (57): 2959. https://doi.org/10.21105/joss.02959.
 * Lawrence, G. A., M. E. Boye, M. J. Crowther, J. G. Ibrahim, G. Quartey, S. Micallef, and F. Y. Bois. 2016. "Joint modeling of survival and longitudinal non-survival data: current methods and issues. Report of the DIA Bayesian joint modeling working group." Statistics in Medicine 34 (14): 2181–95. https://doi.org/10.1002/sim.6141.
 * Therneau, T. M., and P. M. Grambsch. 2000. Modeling Survival Data: Extending the Cox Model. New York: Springer.
+:::
+
+
+## Image credit {.tiny}
+
+:::{.nonincremental}
+
+* <https://unsplash.com/photos/brown-and-gray-stones-on-white-surface-hUjSO5dZA_E>
+* <https://unsplash.com/photos/person-stepping-on-blue-stairs-7_kRuX1hSXM>
+* <https://unsplash.com/photos/red-white-and-black-round-wheel-RjqCk9MqhNg>
+* <https://unsplash.com/photos/matrix-movie-still-iar-afB0QQw>
+* <https://unsplash.com/photos/black-and-gray-stethoscope-yo01Z-9HQAw>
+* <https://unsplash.com/photos/white-printing-paper-with-numbers-Wpnoqo2plFA>
+* <https://unsplash.com/photos/woman-in-brown-sweater-covering-her-face-with-her-hand-_sh9vkVbVgo>
+* <https://unsplash.com/license>
+
 :::
