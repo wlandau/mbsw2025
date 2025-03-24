@@ -655,7 +655,7 @@ tar_visnetwork(targets_only = TRUE)
 :::{.column width="50%"}
 
 <center>
-<img src="./images/targets.png" height = "300px">
+<img src="./images/targets.png" height = "400px">
 </center>
 
 :::
@@ -663,7 +663,7 @@ tar_visnetwork(targets_only = TRUE)
 :::{.column width="50%"}
 
 <center>
-<div style="font-size: 1.5em">
+<div style="font-size: 2em">
 * Time savings
 * Reproducibility
 * Peace of mind
