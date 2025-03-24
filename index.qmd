@@ -628,7 +628,7 @@ tar_target(
 <img src="./images/graph-change-event-threshold.png">
 </center>
 
-## Change simulate_data_survival()
+## Change an upstream function
 
 <center>
 <img src="./images/graph-change-function.png">
