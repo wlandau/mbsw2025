@@ -338,13 +338,12 @@ plot_results(results)
 ## Make-like pipeline tools
 
 <center>
-<img src="./images/graph1.png" height="300px">
+<img src="./images/infographic.png" height = "300px">
 </center>
 
-* Draw a graph of the workflow.
-* Run necessary tasks in parallel.
-* Skip up-to-date tasks.
-* Manage output data.
+<center>
+<img src="./images/graph-final.png" height = "200px">
+</center>
 
 ## A Make-like pipeline tool for R
 
@@ -357,10 +356,10 @@ plot_results(results)
 * Integrates with Quarto.
 * Runs distributed computing.
 
-## <https://docs.ropensci.org/targets/>
+## <https://docs.ropensci.org/targets>
 
 <center>
-<a href="https://docs.ropensci.org/targets/"><img src="./images/qr_docs.png"></a>
+<a href="https://docs.ropensci.org/targets/"><img src="./images/qr-docs.png" height = "550px"></a>
 </center>
 
 # Our simulation pipeline
@@ -462,11 +461,23 @@ tarchetypes::tar_quarto(
 )
 ```
 
+## Quarto report
+
+<center>
+<img src="./images/quarto-source.png" height="550px">
+</center>
+
 ## Connections among targets
 
 ```{r}
 tar_visnetwork(targets_only = TRUE)
 ```
+
+<br>
+
+<center>
+<img src="./images/graph-outdated.png">
+</center>
 
 ## Connections to functions
 
@@ -474,7 +485,11 @@ tar_visnetwork(targets_only = TRUE)
 tar_visnetwork()
 ```
 
+<center>
+<img src="./images/graph-functions.png">
+</center>
 
+# Running the pipeline
 
 ## Run the pipeline
 
@@ -513,5 +528,181 @@ tar_visnetwork(targets_only = TRUE)
 <center>
 <img src="./images/graph-dispatched.png">
 </center>
+
+## Simulation results
+
+```{r}
+tar_read(trials, branches = seq_len(8))
+#> # A tibble: 10 × 4
+#>    events efficacy enrolled years
+#>     <dbl>    <dbl>    <dbl> <dbl>
+#>  1     40   0.055        58  6.31
+#>  2     50   0.0685       77  7.99
+#>  3     60   0.0602       81  7.93
+#>  4     70   0.153        93  9.01
+#>  5     40   0.220        65  6.03
+#>  6     50   0.479        73  6.43
+#>  7     60   0.918        87  8.91
+#>  8     70   0.832        89  8.99
+```
+
+## Plot
+
+```{r}
+tar_read(plot)
+```
+
+<center>
+<img src="./images/plot.png">
+</center>
+
+## Quarto report
+
+<center>
+<img src="./images/quarto.png" height="550px">
+</center>
+
+## Add a new target
+
+```{r}
+tar_target(
+  name = years,
+  command = plot_years(trials)
+)
+```
+
+<center>
+<img src="./images/graph-years.png">
+</center>
+
+## Skip up-to-date targets
+
+<br>
+
+```{r}
+tar_make()
+#> ✔ skipping targets (1 so far)...
+#> ✔ skipping targets (160 so far)...
+#> ...
+#> ✔ skipping targets (40002 so far)...
+#> ▶ dispatched target years
+```
+
+## Years until interim
+
+```{r}
+tar_read(years)
+```
+
+<center>
+<img src="./images/years.png">
+</center>
+
+## Change an event threshold
+
+```{r}
+tar_target(
+  name = events,
+  command = c(40, 50, 60, 75)
+)
+```
+
+<center>
+<img src="./images/graph-change-event-threshold.png">
+</center>
+
+## Change function `simulate_data_survival()`
+
+<center>
+<img src="./images/graph-change-function.png">
+</center>
+
+
+## Up-to-date pipeline
+
+```{r}
+tar_outdated()
+#> character(0)
+```
+
+<br>
+
+```{r}
+tar_visnetwork(targets_only = TRUE)
+```
+
+<center>
+<img src="./images/graph-uptodate.png">
+</center>
+
+# Recap
+
+## Conclusions
+
+<center>
+<img src="./images/plot-large-font.png" height = "400px">
+</center>
+
+* Interim at 40 events looks promising.
+* Need to simulate full design with interims and final analysis.
+
+## Benefits of formal pipelines
+
+<br>
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>
+<img src="./images/targets.png" height = "300px">
+</center>
+
+:::
+
+:::{.column width="50%"}
+
+<center>
+<div style="font-size: 1.5em">
+* Time savings
+* Reproducibility
+* Peace of mind
+</div>
+</center>
+
+:::
+
+::::
+
+## Thanks
+
+##
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+<center>
+<span style= "font-size: 1.5em; font-weight: bold;">Documentation</span>
+<a href="https://docs.ropensci.org/targets/"><img src="./images/qr-docs.png"></a>
+<span style= "font-size: 0.75em;"><https://docs.ropensci.org/targets></span>
+</center>
+
+:::
+
+:::{.column width="50%"}
+
+<center>
+<span style= "font-size: 1.5em; font-weight: bold;">Slides</span>
+<a href="https://wlandau.github.io/useR2025"><img src="./images/qr-slides.png"></a>
+<span style= "font-size: 0.75em;"><https://wlandau.github.io/useR2025></span>
+</center>
+
+:::
+
+::::
+
+## References
+
 
 

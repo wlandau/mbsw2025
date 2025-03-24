@@ -519,14 +519,11 @@ h(y) &lt; 0.4
 <section id="make-like-pipeline-tools" class="slide level2">
 <h2>Make-like pipeline tools</h2>
 <center>
-<img src="./images/graph1.png" height="300px">
+<img src="./images/infographic.png" height="300px">
 </center>
-<ul>
-<li class="fragment">Draw a graph of the workflow.</li>
-<li class="fragment">Run necessary tasks in parallel.</li>
-<li class="fragment">Skip up-to-date tasks.</li>
-<li class="fragment">Manage output data.</li>
-</ul>
+<center>
+<img src="./images/graph-final.png" height="200px">
+</center>
 </section>
 <section id="a-make-like-pipeline-tool-for-r" class="slide level2">
 <h2>A Make-like pipeline tool for R</h2>
@@ -541,9 +538,9 @@ h(y) &lt; 0.4
 </ul>
 </section>
 <section id="httpsdocs.ropensci.orgtargets" class="slide level2">
-<h2><a href="https://docs.ropensci.org/targets/" class="uri">https://docs.ropensci.org/targets/</a></h2>
+<h2><a href="https://docs.ropensci.org/targets" class="uri">https://docs.ropensci.org/targets</a></h2>
 <center>
-<a href="https://docs.ropensci.org/targets/"><img src="./images/qr_docs.png"></a>
+<a href="https://docs.ropensci.org/targets/"><img src="./images/qr-docs.png" height="550px"></a>
 </center>
 </section></section>
 <section>
@@ -643,17 +640,35 @@ h(y) &lt; 0.4
 <span id="cb13-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="quarto-report" class="slide level2">
+<h2>Quarto report</h2>
+<center>
+<img src="./images/quarto-source.png" height="550px">
+</center>
+</section>
 <section id="connections-among-targets" class="slide level2">
 <h2>Connections among targets</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">tar_visnetwork</span>(<span class="at">targets_only =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><br></p>
+<center>
+<img src="./images/graph-outdated.png">
+</center>
 </section>
 <section id="connections-to-functions" class="slide level2">
 <h2>Connections to functions</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">tar_visnetwork</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<center>
+<img src="./images/graph-functions.png">
+</center>
+</section></section>
+<section>
+<section id="running-the-pipeline" class="title-slide slide level1 center">
+<h1>Running the pipeline</h1>
+
 </section>
 <section id="run-the-pipeline" class="slide level2">
 <h2>Run the pipeline</h2>
@@ -686,6 +701,157 @@ h(y) &lt; 0.4
 <center>
 <img src="./images/graph-dispatched.png">
 </center>
+</section>
+<section id="simulation-results" class="slide level2">
+<h2>Simulation results</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">tar_read</span>(trials, <span class="at">branches =</span> <span class="fu">seq_len</span>(<span class="dv">8</span>))</span>
+<span id="cb19-2"><a href=""></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb19-3"><a href=""></a><span class="co">#&gt;    events efficacy enrolled years</span></span>
+<span id="cb19-4"><a href=""></a><span class="co">#&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb19-5"><a href=""></a><span class="co">#&gt;  1     40   0.055        58  6.31</span></span>
+<span id="cb19-6"><a href=""></a><span class="co">#&gt;  2     50   0.0685       77  7.99</span></span>
+<span id="cb19-7"><a href=""></a><span class="co">#&gt;  3     60   0.0602       81  7.93</span></span>
+<span id="cb19-8"><a href=""></a><span class="co">#&gt;  4     70   0.153        93  9.01</span></span>
+<span id="cb19-9"><a href=""></a><span class="co">#&gt;  5     40   0.220        65  6.03</span></span>
+<span id="cb19-10"><a href=""></a><span class="co">#&gt;  6     50   0.479        73  6.43</span></span>
+<span id="cb19-11"><a href=""></a><span class="co">#&gt;  7     60   0.918        87  8.91</span></span>
+<span id="cb19-12"><a href=""></a><span class="co">#&gt;  8     70   0.832        89  8.99</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="plot" class="slide level2">
+<h2>Plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">tar_read</span>(plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<center>
+<img src="./images/plot.png">
+</center>
+</section>
+<section id="quarto-report-1" class="slide level2">
+<h2>Quarto report</h2>
+<center>
+<img src="./images/quarto.png" height="550px">
+</center>
+</section>
+<section id="add-a-new-target" class="slide level2">
+<h2>Add a new target</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">tar_target</span>(</span>
+<span id="cb21-2"><a href=""></a>  <span class="at">name =</span> years,</span>
+<span id="cb21-3"><a href=""></a>  <span class="at">command =</span> <span class="fu">plot_years</span>(trials)</span>
+<span id="cb21-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<center>
+<img src="./images/graph-years.png">
+</center>
+</section>
+<section id="skip-up-to-date-targets" class="slide level2">
+<h2>Skip up-to-date targets</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">tar_make</span>()</span>
+<span id="cb22-2"><a href=""></a><span class="co">#&gt; ✔ skipping targets (1 so far)...</span></span>
+<span id="cb22-3"><a href=""></a><span class="co">#&gt; ✔ skipping targets (160 so far)...</span></span>
+<span id="cb22-4"><a href=""></a><span class="co">#&gt; ...</span></span>
+<span id="cb22-5"><a href=""></a><span class="co">#&gt; ✔ skipping targets (40002 so far)...</span></span>
+<span id="cb22-6"><a href=""></a><span class="co">#&gt; ▶ dispatched target years</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="years-until-interim" class="slide level2">
+<h2>Years until interim</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">tar_read</span>(years)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<center>
+<img src="./images/years.png">
+</center>
+</section>
+<section id="change-an-event-threshold" class="slide level2">
+<h2>Change an event threshold</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">tar_target</span>(</span>
+<span id="cb24-2"><a href=""></a>  <span class="at">name =</span> events,</span>
+<span id="cb24-3"><a href=""></a>  <span class="at">command =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">75</span>)</span>
+<span id="cb24-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<center>
+<img src="./images/graph-change-event-threshold.png">
+</center>
+</section>
+<section id="change-function-simulate_data_survival" class="slide level2">
+<h2>Change function <code>simulate_data_survival()</code></h2>
+<center>
+<img src="./images/graph-change-function.png">
+</center>
+</section>
+<section id="up-to-date-pipeline" class="slide level2">
+<h2>Up-to-date pipeline</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="fu">tar_outdated</span>()</span>
+<span id="cb25-2"><a href=""></a><span class="co">#&gt; character(0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">tar_visnetwork</span>(<span class="at">targets_only =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<center>
+<img src="./images/graph-uptodate.png">
+</center>
+</section></section>
+<section>
+<section id="recap" class="title-slide slide level1 center">
+<h1>Recap</h1>
+
+</section>
+<section id="conclusions" class="slide level2">
+<h2>Conclusions</h2>
+<center>
+<img src="./images/plot-large-font.png" height="400px">
+</center>
+<ul>
+<li class="fragment">Interim at 40 events looks promising.</li>
+<li class="fragment">Need to simulate full design with interims and final analysis.</li>
+</ul>
+</section>
+<section id="benefits-of-formal-pipelines" class="slide level2">
+<h2>Benefits of formal pipelines</h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<center>
+<img src="./images/targets.png" height="300px">
+</center>
+</div><div class="column" style="width:50%;">
+<center>
+<div style="font-size: 1.5em">
+<ul>
+<li class="fragment">Time savings</li>
+<li class="fragment">Reproducibility</li>
+<li class="fragment">Peace of mind</li>
+</ul>
+</div>
+</center>
+</div></div>
+</section>
+<section id="thanks" class="slide level2">
+<h2>Thanks</h2>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<center>
+<span style="font-size: 1.5em; font-weight: bold;">Documentation</span> <a href="https://docs.ropensci.org/targets/"><img src="./images/qr-docs.png"></a> <span style="font-size: 0.75em;"><a href="https://docs.ropensci.org/targets" class="uri">https://docs.ropensci.org/targets</a></span>
+</center>
+</div><div class="column" style="width:50%;">
+<center>
+<span style="font-size: 1.5em; font-weight: bold;">Slides</span> <a href="https://wlandau.github.io/useR2025"><img src="./images/qr-slides.png"></a> <span style="font-size: 0.75em;"><a href="https://wlandau.github.io/useR2025" class="uri">https://wlandau.github.io/useR2025</a></span>
+</center>
+</div></div>
+</section>
+<section id="references" class="slide level2">
+<h2>References</h2>
 
 </section></section>
     </div>
