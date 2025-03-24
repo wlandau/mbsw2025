@@ -512,27 +512,39 @@ h(y) &lt; 0.4
 </center>
 </section></section>
 <section>
-<section id="targets" class="title-slide slide level1 center">
-<h1>targets</h1>
+<section id="pipelines" class="title-slide slide level1 center">
+<h1>Pipelines</h1>
 
 </section>
-<section id="make-like-pipeline-tools" class="slide level2">
-<h2>Make-like pipeline tools</h2>
+<section id="what-is-a-pipeline" class="slide level2">
+<h2>What is a pipeline?</h2>
+<center>
+<img src="./images/graph-final.png" height="300px">
+</center>
+<ul>
+<li class="fragment">Pipeline: a formal group of tasks.</li>
+<li class="fragment">Each task declares a command, dependencies, and output.</li>
+<li class="fragment">A task cannot eventually depend on itself.</li>
+</ul>
+</section>
+<section id="pipeline-tools" class="slide level2">
+<h2>Pipeline tools</h2>
+<p><br></p>
 <center>
 <img src="./images/infographic.png" height="300px">
 </center>
-<center>
-<img src="./images/graph-final.png" height="200px">
-</center>
+<ul>
+<li class="fragment">Examples: Make, Airflow, Nextflow, Prefect, and <code>targets</code>.</li>
+</ul>
 </section>
-<section id="a-make-like-pipeline-tool-for-r" class="slide level2">
-<h2>A Make-like pipeline tool for R</h2>
+<section id="targets-a-pipeline-tool-for-r" class="slide level2">
+<h2>targets: a pipeline tool for R</h2>
 <center>
 <img src="./images/logo-tweet.png" height="300px">
 </center>
 <ul>
-<li class="fragment">Operates in the comfort of your local R session.</li>
-<li class="fragment">Detects dependencies automatically.</li>
+<li class="fragment">Retains the comfort of your local R session.</li>
+<li class="fragment">Declares dependencies implicitly.</li>
 <li class="fragment">Integrates with Quarto.</li>
 <li class="fragment">Runs distributed computing.</li>
 </ul>
