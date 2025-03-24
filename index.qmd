@@ -663,7 +663,7 @@ tar_visnetwork(targets_only = TRUE)
 * Interim at 40 events looks promising.
 * Need to simulate full design with interims and final analysis.
 
-## Benefits of formal pipelines
+## Benefits of pipeline tools
 
 <br>
 
