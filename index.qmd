@@ -49,6 +49,23 @@ knitr::opts_chunk$set(
 <h4>Will Landau</h4>
 </center>
 
+## Background
+
+* Training:
+    * Iowa State University 2011-2016.
+    * Bayesian Statistics.
+* Career
+    * Eli Lilly and Company, 2016-present.
+    * Methods and tools for clinical trials.
+    * Author of the `targets` package.
+
+## Agenda
+
+<br>
+
+<center>
+<img src="./images/agenda.png">
+</center>
 
 # Clinical trial simulation
 
@@ -100,7 +117,7 @@ knitr::opts_chunk$set(
 * Long execution times.
 * Frequent changes.
 
-# Illustrative simulation
+# Example trial
 
 ## Hypothetical trial
 
@@ -366,7 +383,7 @@ plot_results(results)
 * Integrates with Quarto.
 * Runs distributed computing.
 
-# Our simulation pipeline
+# Example pipeline
 
 ## Project-oriented workflow
 
