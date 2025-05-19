@@ -348,7 +348,7 @@ list(
   tar_target(events, ...),
   tar_target(trials, ..., pattern = ...),
   tar_target(plot, ...),
-  tar_quarto(quarto, ...)
+  tar_quarto(quarto, path = "results.qmd")
 )
 ```
 
